@@ -39,7 +39,7 @@ namespace TorrowTechTest.GameCore
         //Метод совершает ход клеткой (x,y), если он возможен
         public bool Turn(int x, int y)
         {
-            if (x >= fiedlDimension || y >= fiedlDimension)
+            if (x >= fiedlDimension || y >= fiedlDimension || x < 0 || y < 0)
                 return false;
 
             if (x + 1 < fiedlDimension && field[x + 1, y] == maxValue)
@@ -58,14 +58,7 @@ namespace TorrowTechTest.GameCore
         
         public override string ToString()
         {
-            var result = new StringBuilder();
-            foreach(var elem in field)
-            {
-                result.Append(elem);
-                result.Append(',');
-            }
-            result.Length--;
-            return result.ToString();
+            return string.Join(",", field.Cast<int>());
         }
     }
 

@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace TorrowTechTest.Controllers
 {
-    [Route("api/[controller]")]
+    
     public class GameController : Controller
     {
         private GameContext db;
@@ -19,10 +19,12 @@ namespace TorrowTechTest.Controllers
         {
             db = context;
         }
+        
         //Запрос, создающий новую игру по Guid
-        // POST api/game/id
-        [HttpPost("{id}")]
-        public ActionResult Post(Guid id)
+        // POST api/game/new/   
+        [Route("api/game/newgame")]
+        [HttpPost]
+        public ActionResult NewGame([FromBody]Guid id)
         {
             if(id == Guid.Empty || db.GameStates.Any(x => x.Id == id))
             {
@@ -34,27 +36,35 @@ namespace TorrowTechTest.Controllers
             db.SaveChanges();
             return Json(field);
         }
+        
         //Запрос, совершающий ход в игре. Игра определяется по Guid
-        // POST api/game
-        //TO DO: BODY
-        [HttpPost("{id}/{x}/{y}")]
-        public ActionResult Post(Guid id, int x, int y)
+        // POST api/game/   
+        [Route("api/game/turn")]
+        [HttpPost]
+        public ActionResult Turn([FromBody] TurnInfo turn)
         {
-            var game = db.GameStates.SingleOrDefault(g => g.Id == id);
+            var game = db.GameStates.SingleOrDefault(g => g.Id == turn.Id);
             if(game == null)
             {
                 Response.StatusCode = 404;
                 return Content("Game doesn't exist");
             }
             var field = new Field(game.GameField);
-            if (field.Turn(x, y))
+            if (field.Turn(turn.X, turn.Y))
             {
                 game.GameField = field.ToString();
                 db.GameStates.Update(game);
-                db.SaveChanges();
-                
+                db.SaveChanges();                
             }
             return Json(game.GameField);
-        }        
+        }
+
+
+        public class TurnInfo
+        {
+            public Guid Id { get; set; }
+            public int X { get; set; }
+            public int Y { get; set; }
+        }
     }
 }

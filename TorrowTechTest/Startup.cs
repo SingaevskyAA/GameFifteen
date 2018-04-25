@@ -28,6 +28,7 @@ namespace TorrowTechTest
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<GameContext>(options =>
                options.UseSqlServer(connection));
+            
             services.AddMvc();
         }
 
