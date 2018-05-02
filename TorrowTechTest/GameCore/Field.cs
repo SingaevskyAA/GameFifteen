@@ -23,6 +23,8 @@ namespace TorrowTechTest.GameCore
             return string.Join(",", field);
         }
 
+
+        //Конструктор, создающий field из срочного представления. 
         public Field(string field)
         {
             var parsedField = field.Split(',').Select(int.Parse).ToArray();
@@ -53,15 +55,18 @@ namespace TorrowTechTest.GameCore
             else
                 return false;
             return true;
-        }  
+        }
 
-        
+
+        //Перегрузка метода ToString для получения поля в необходимом формате
         public override string ToString()
         {
             return string.Join(",", field.Cast<int>());
         }
     }
 
+
+    //Расширение для перестановки элементов двумерного массива
     static class Extention
     {        
         public static void Swap<T>(this T[,] array, int x1, int y1, int x2, int y2)
