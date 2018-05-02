@@ -10,7 +10,10 @@ namespace TorrowTechTest.GameCore
         const int maxValue = fiedlDimension * fiedlDimension;
         private int[,] field;
 
-        //Метод создает новое поле для игры
+        /// <summary>
+        /// Creates game field
+        /// </summary>
+        /// <returns>String representation of the field</returns>
         public static string GetNewField()
         {
             Random rnd = new Random();
@@ -27,7 +30,10 @@ namespace TorrowTechTest.GameCore
         }
 
 
-        //Конструктор, создающий field из строчного представления. 
+        /// <summary>
+        /// Creates a game field from a string
+        /// </summary>
+        /// <param name="field">String representation of the field</param>
         public Field(string field)
         {
             var parsedField = field.Split(',').Select(int.Parse).ToArray();
@@ -41,7 +47,9 @@ namespace TorrowTechTest.GameCore
             }
         }
 
-        //Метод совершает ход клеткой (x,y), если он возможен
+        /// <summary>
+        /// Makes turn if it possible
+        /// </summary>
         public bool Turn(int x, int y)
         {
             if (x >= fiedlDimension || y >= fiedlDimension || x < 0 || y < 0)
@@ -59,14 +67,16 @@ namespace TorrowTechTest.GameCore
                 return false;
             return true;
         }
-
-        //Перегрузка метода ToString для получения поля в необходимом формате
+               
         public override string ToString()
         {
             return string.Join(",", field.Cast<int>());
         }
 
-        //Проверяет расклад на решаемость 
+        /// <summary>
+        /// Checks the possibility of solving the game
+        /// </summary>
+        /// <param name="field">Field as a one-dimensional int array</param>              
         private static bool IsSolvable(int[] field)
         {
             var invCounter = 0;
@@ -112,8 +122,10 @@ namespace TorrowTechTest.GameCore
     }
     
     static class Extention
-    {       
-        //Расширение для перестановки элементов двумерного массива
+    {
+        /// <summary>
+        /// Swaps two elements of a two-dimensional array
+        /// </summary>        
         public static void Swap<T>(this T[,] array, int x1, int y1, int x2, int y2)
         {
             T temp = array[x1, y1];
@@ -121,7 +133,9 @@ namespace TorrowTechTest.GameCore
             array[x2, y2] = temp;
         }
 
-        //Расширение для перестановки элементов одномерного массива
+        /// <summary>
+        /// Swaps two elements of a one-dimensional array
+        /// </summary>  
         public static void Swap<T>(this T[] array, int x, int y)
         {
             T temp = array[x];

@@ -15,9 +15,8 @@ namespace TorrowTechTest.Controllers
         {
             db = context;
         }
-        
-        //Запрос, создающий новую игру по Guid, переданному пользователем. 
-        // POST api/game/newgame/   
+
+        //Request that creates a new game using the id received from the client
         [Route("api/game/newgame")]
         [HttpPost]
         public ActionResult NewGame([FromBody]Guid id)
@@ -33,8 +32,7 @@ namespace TorrowTechTest.Controllers
             return Json(field);
         }
         
-        //Запрос, совершающий ход в игре. Игра определяется по Guid
-        // POST api/game/   
+        //Request that makes a turn in the game 
         [Route("api/game/turn")]
         [HttpPost]
         public ActionResult Turn([FromBody] TurnInfo turn)
@@ -55,7 +53,7 @@ namespace TorrowTechTest.Controllers
             return Json(game.GameField);
         }
 
-        // Вспомогательный класс-обертка для запроса Turn
+        // Additional class for turn request
         public class TurnInfo
         {
             public Guid Id { get; set; }
