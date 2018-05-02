@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2015
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TorrowTechTest", "TorrowTechTest\TorrowTechTest.csproj", "{E6BB077F-644B-485C-BF78-FF8F6174314D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FifteenAPI", "TorrowTechTest\FifteenAPI.csproj", "{E6BB077F-644B-485C-BF78-FF8F6174314D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FifteenTests", "FifteenTests\FifteenTests.csproj", "{D8A8BC4B-1699-4B8C-836F-D12484307139}"
 EndProject
