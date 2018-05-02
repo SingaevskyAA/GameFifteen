@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TorrowTechTest.Models;
-using System.Net.Http;
-using System.Net;
 using TorrowTechTest.GameCore;
-using Microsoft.EntityFrameworkCore;
+
 
 namespace TorrowTechTest.Controllers
 {

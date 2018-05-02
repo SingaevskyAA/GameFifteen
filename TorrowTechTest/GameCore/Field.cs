@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using System.Text;
+
 
 namespace TorrowTechTest.GameCore
 {    
@@ -29,7 +27,7 @@ namespace TorrowTechTest.GameCore
         }
 
 
-        //Конструктор, создающий field из срочного представления. 
+        //Конструктор, создающий field из строчного представления. 
         public Field(string field)
         {
             var parsedField = field.Split(',').Select(int.Parse).ToArray();
@@ -62,13 +60,11 @@ namespace TorrowTechTest.GameCore
             return true;
         }
 
-
         //Перегрузка метода ToString для получения поля в необходимом формате
         public override string ToString()
         {
             return string.Join(",", field.Cast<int>());
         }
-
 
         //Проверяет расклад на решаемость 
         private static bool IsSolvable(int[] field)
